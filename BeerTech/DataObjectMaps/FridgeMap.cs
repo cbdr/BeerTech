@@ -10,7 +10,7 @@ namespace BeerTech.DataObjectMaps {
     internal sealed class FridgeMap : ClassMap<Fridge> {
 
         public FridgeMap() {
-            Table("Fridge");
+            Table("Fridges");
             Id(x => x.ID);
             Map(x => x.Name).CustomType("AnsiString").Length(75);
         }
