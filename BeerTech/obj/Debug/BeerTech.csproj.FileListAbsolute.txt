@@ -26,3 +26,8 @@ C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.WebPages.Raz
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\obj\Debug\BeerTech.csprojResolveAssemblyReference.cache
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\obj\Debug\BeerTech.dll
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\obj\Debug\BeerTech.pdb
+C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\NHibernate.dll
+C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\RestSharp.dll
+C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\NHibernate.xml
+C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\FluentNHibernate.dll
+C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\FluentNHibernate.xml
