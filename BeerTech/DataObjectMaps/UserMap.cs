@@ -11,7 +11,7 @@ namespace BeerTech.DataObjectMaps {
 
         public UserMap() {
             Table("Users");
-            Id(x => x.UserID);
+            Id(x => x.UserID).CustomType("AnsiString").Length(20).GeneratedBy.Assigned();
             Map(x => x.Email).CustomType("AnsiString").Length(150);
             Map(x => x.Password).CustomType("AnsiString").Length(200);
             Map(x => x.PasswordSalt).CustomType("AnsiString").Length(200);

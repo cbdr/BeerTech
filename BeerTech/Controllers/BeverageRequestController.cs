@@ -31,6 +31,7 @@ namespace BeerTech.Controllers
 
         //POST: /CreateRequest
         [HttpPost]
+        [Authorize]
         public ActionResult CreateRequest()
         {
             var bevRequest = new BeverageRequest();

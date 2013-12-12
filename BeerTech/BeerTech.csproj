@@ -136,8 +136,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\APIClient.cs" />
+    <Compile Include="Authentication\AuthenticationService.cs" />
+    <Compile Include="Authentication\SaltedHash.cs" />
     <Compile Include="Controllers\BeverageRequestController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataObjectMaps\BeverageRequestMap.cs" />
     <Compile Include="DataObjectMaps\FridgeMap.cs" />
     <Compile Include="DataObjectMaps\UserMap.cs" />
@@ -154,6 +157,7 @@
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\BeverageRequestRepository.cs" />
     <Compile Include="Repository\FridgeRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Utility\IDGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -194,7 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
