@@ -31,3 +31,5 @@ C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\RestSharp.dll
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\NHibernate.xml
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\FluentNHibernate.dll
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\FluentNHibernate.xml
+C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\Iesi.Collections.dll
+C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\Iesi.Collections.xml

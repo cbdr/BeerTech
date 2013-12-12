@@ -12,10 +12,5 @@ namespace BeerTech.Repository
             : base()
         {
         }
-
-        public void Save(BeverageRequest request)
-        {
-            Session.SaveOrUpdate(request);
-        }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Web;
 using BeerTech.DataObjects;
 using FluentNHibernate.Mapping;
 namespace BeerTech.DataObjectMaps
@@ -10,9 +10,9 @@ namespace BeerTech.DataObjectMaps
     {
         public BeverageRequestMap()
         {
-            Table("Request");
+            Table("BeverageRequests");
             Id(x => x.ID);
-            Map(x => x.UserID).CustomType("AnsiString");
+            Map(x => x.UserID).CustomType("AnsiString").Length(20);
             Map(x => x.FridgeID).CustomType("AnsiString").Length(20);
             Map(x => x.BeverageTitle).CustomType("AnsiString").Length(75);
             Map(x => x.BeerAPIID).CustomType("AnsiString").Length(50);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BeerTech.Utility;
 
 namespace BeerTech.DataObjects
 {
@@ -14,5 +15,11 @@ namespace BeerTech.DataObjects
         public virtual string BeerAPIID { get; set; }
         public virtual string Status { get; set; }
         public virtual DateTime RequestDate { get; set; }
+
+
+        public BeverageRequest()
+        {
+            ID = new IDGenerator().GetNewID("BR");
+        }
     }
 }

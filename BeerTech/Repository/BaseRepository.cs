@@ -19,6 +19,33 @@ namespace BeerTech.Repository
             Session = CreateSession();
         }
 
+        public void Save(T Item)
+        {
+            Session.BeginTransaction();
+            Session.Save(Item);
+            Session.Transaction.Commit();
+        }
+
+        public void SaveOrUpdate(T Item)
+        {
+            Session.BeginTransaction();
+            Session.SaveOrUpdate(Item);
+            Session.Transaction.Commit();
+        }
+
+        public void Update(T Item)
+        {
+            Session.BeginTransaction();
+            Session.Update(Item);
+            Session.Transaction.Commit();
+        }
+
+        public T LoadByKey(T Prototype, string key)
+        {
+            Session.Load(Prototype, key);
+            return Prototype;
+        }
+
         private ISession CreateSession()
         {
             var factory = CreateSessionFactory(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());
