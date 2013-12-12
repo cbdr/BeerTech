@@ -62,7 +62,7 @@ _ReSharper*
 #config files
 Settings.Desinger.cs
 Settings.settings
-Web.config
+#Web.config
 
 # Installshield output folder 
 [Ee]xpress
