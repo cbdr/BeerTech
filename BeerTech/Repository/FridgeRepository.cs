@@ -11,17 +11,5 @@ namespace BeerTech.Repository {
         public FridgeRepository()
             : base() {
         }
-
-        public void Save(Fridge fridge) {
-            Session.SaveOrUpdate(fridge);
-        }
-
-        public List<Fridge> getAllFridges() {
-            return Session.CreateCriteria<Fridge>().List<Fridge>().ToList<Fridge>();
-        }
-
-        public Fridge getFridge(int fridgeID) {
-            return Session.Get<Fridge>(fridgeID);
-        }
     }
 }
