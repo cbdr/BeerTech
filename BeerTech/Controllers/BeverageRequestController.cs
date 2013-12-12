@@ -40,12 +40,12 @@ namespace BeerTech.Controllers
         public ActionResult CreateRequest()
         {
             var bevRequest = new BeverageRequest();
-            bevRequest.UserID = Request.Form.Get("UserID");
             bevRequest.FridgeID = Request.Form.Get("FridgeID");
             bevRequest.BeverageTitle = Request.Form.Get("BeverageTitle");
             bevRequest.BeerAPIID = Request.Form.Get("BeerAPIID");
             bevRequest.Status = BeverageRequest.Statuses.Submitted.ToString();
             bevRequest.RequestDate = DateTime.Now;
+            bevRequest.Email = HttpContext.User.Identity.Name;
 
             var repo = new BeverageRequestRepository();
             repo.Save(bevRequest);

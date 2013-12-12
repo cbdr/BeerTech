@@ -10,12 +10,12 @@ namespace BeerTech.DataObjects
     public class BeverageRequest
     {
         public virtual string ID { get; protected set; }
-        public virtual string UserID { get; set; }
         public virtual string FridgeID { get; set; }
         public virtual string BeverageTitle { get; set; }
         public virtual string BeerAPIID { get; set; }
         public virtual string Status { get; set; }
         public virtual DateTime RequestDate { get; set; }
+        public virtual string Email { get; set; }
 
         public enum Statuses
         {
