@@ -171,7 +171,8 @@
     <Content Include="Content\CSS\jumbotron.css" />
     <Content Include="Content\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\alex.png" />
-    <Content Include="Content\Images\beerheader.png" />
+    <Content Include="Content\Images\beer.jpg" />
+    <Content Include="Content\Images\beerloader.gif" />
     <Content Include="Content\Images\ben.png" />
     <Content Include="Content\Images\corri.png" />
     <Content Include="Global.asax" />
@@ -184,6 +185,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\ngapps\request.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -195,6 +197,7 @@
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\BeverageRequest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

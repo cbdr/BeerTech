@@ -10,6 +10,11 @@ namespace BeerTech.Controllers
 {
     public class BeverageRequestController : Controller
     {
+
+        public ActionResult Index()
+        {
+            return View();
+        }
         //
         // GET: /GetRequest/
 
@@ -49,10 +54,5 @@ namespace BeerTech.Controllers
 
             return Json(bevRequest);
         }
-
-
-
-
-
     }
 }

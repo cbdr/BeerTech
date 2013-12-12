@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Requests";
+    ViewBag.PageDescription = "This is where you can see what has been requested, and help out by fulfilling requests (or adding your own). Note: Beer may be encouraged, but you can request other things (alcoholic and none).";
+}
+
+<div class="container" ng-app ng-controller="RequestCtrl">
+    <div class="row" ng-hide="loaded">
+        <div class="col-md-12 beerloader">&nbsp;</div>
+    </div>
+    <div class="row" ng-show="loaded" ng-repeat="row in rows">
+        <div class="col-md-4 well" ng-repeat="col in row">
+            This
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/ngapps/request.js");
+}
