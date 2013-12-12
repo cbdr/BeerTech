@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\BeerTech.dll
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\BeerTech.pdb
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\Microsoft.Web.Infrastructure.dll
@@ -33,3 +34,37 @@ C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\FluentNHibernate.dll
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\FluentNHibernate.xml
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\Iesi.Collections.dll
 C:\Users\btidwell\Documents\GitHub\BeerTech\BeerTech\bin\Iesi.Collections.xml
+=======
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\BeerTech.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\BeerTech.pdb
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\Newtonsoft.Json.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Net.Http.Formatting.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Helpers.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Http.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Http.WebHost.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Mvc.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Razor.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.WebPages.Deployment.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.WebPages.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.WebPages.Razor.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\Newtonsoft.Json.xml
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Net.Http.Formatting.xml
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Helpers.xml
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Http.xml
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Http.WebHost.xml
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Mvc.xml
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Razor.xml
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.WebPages.xml
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.WebPages.Deployment.xml
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.WebPages.Razor.xml
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\obj\Debug\BeerTech.csprojResolveAssemblyReference.cache
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\obj\Debug\BeerTech.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\obj\Debug\BeerTech.pdb
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\Antlr3.Runtime.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Optimization.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\WebGrease.dll
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\Antlr3.Runtime.pdb
+C:\Users\coolson\Documents\GitHub\BeerTech\BeerTech\bin\System.Web.Optimization.xml
+>>>>>>> origin/corri
