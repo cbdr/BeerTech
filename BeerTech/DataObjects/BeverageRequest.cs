@@ -6,6 +6,7 @@ using BeerTech.Utility;
 
 namespace BeerTech.DataObjects
 {
+    [Serializable]
     public class BeverageRequest
     {
         public virtual string ID { get; protected set; }
@@ -16,6 +17,10 @@ namespace BeerTech.DataObjects
         public virtual string Status { get; set; }
         public virtual DateTime RequestDate { get; set; }
 
+        public enum Statuses
+        {
+            Submitted, Bought, Rejected, NotFound
+        }
 
         public BeverageRequest()
         {

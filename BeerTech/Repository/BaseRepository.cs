@@ -40,10 +40,9 @@ namespace BeerTech.Repository
             Session.Transaction.Commit();
         }
 
-        public T LoadByKey(T Prototype, string key)
+        public T LoadByKey(string key)
         {
-            Session.Load(Prototype, key);
-            return Prototype;
+            return Session.Get<T>(key);
         }
 
         private ISession CreateSession()

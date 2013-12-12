@@ -12,5 +12,13 @@ namespace BeerTech.Repository
             : base()
         {
         }
+
+        public IList<BeverageRequest> GetAllRequests()
+        {
+
+            return Session.QueryOver<BeverageRequest>().List();
+
+
+        }
     }
 }

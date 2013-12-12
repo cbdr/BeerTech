@@ -11,21 +11,47 @@ namespace BeerTech.Controllers
     public class BeverageRequestController : Controller
     {
         //
-        // POST: /BeverageRequest/
+        // GET: /GetRequest/
 
-        public ActionResult Request()
+        public ActionResult GetRequest()
         {
-            //var bevRequest = new BeverageRequest();
-            //bevRequest.UserID = "TESTUSER";
-            //bevRequest.FridgeID = "TESTFRIDGE";
-            //bevRequest.BeverageTitle = "BEER";
-            //bevRequest.BeerAPIID = "TESTID";
-            //bevRequest.Status = "Submitted";
-            //bevRequest.RequestDate = DateTime.Now;
-            //var repo = new BeverageRequestRepository();
-            //repo.Save(bevRequest);
-            return Json("Success", JsonRequestBehavior.AllowGet);
+            var id = Request.QueryString["id"];
+            var repo = new BeverageRequestRepository();
+            var bevRequest = repo.LoadByKey(id);
+            return Json(bevRequest, JsonRequestBehavior.AllowGet);
         }
+
+        
+        //GET: /GetAllRequests
+        public ActionResult GetAllRequests()
+        {
+            return Json(new BeverageRequestRepository().GetAllRequests(), JsonRequestBehavior.AllowGet);
+        }
+
+
+        //POST: /CreateRequest
+        [HttpPost]
+        public ActionResult CreateRequest()
+        {
+            var bevRequest = new BeverageRequest();
+            bevRequest.UserID = Request.Form.Get("UserID");
+            bevRequest.FridgeID = Request.Form.Get("FridgeID");
+            bevRequest.BeverageTitle = Request.Form.Get("BeverageTitle");
+            bevRequest.BeerAPIID = Request.Form.Get("BeerAPIID");
+            bevRequest.Status = BeverageRequest.Statuses.Submitted.ToString();
+            bevRequest.RequestDate = DateTime.Now;
+
+            var repo = new BeverageRequestRepository();
+            repo.Save(bevRequest);
+
+            bevRequest = repo.LoadByKey(bevRequest.ID);
+
+            return Json(bevRequest);
+        }
+
+
+
+
 
     }
 }
