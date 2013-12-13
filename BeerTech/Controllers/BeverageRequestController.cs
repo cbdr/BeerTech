@@ -35,6 +35,7 @@ namespace BeerTech.Controllers
 
         //POST: /UpdateStatus
         [HttpPost]
+        [Authorize]
         public ActionResult UpdateStatus()
         {
             var id = Request.Form.Get("id");
