@@ -33,6 +33,22 @@ namespace BeerTech.Controllers
             return Json(new BeverageRequestRepository().GetAllRequests(), JsonRequestBehavior.AllowGet);
         }
 
+        //POST: /UpdateStatus
+        [HttpPost]
+        public ActionResult UpdateStatus()
+        {
+            var id = Request.Form.Get("id");
+            var status = Request.Form.Get("status");
+            var repo = new BeverageRequestRepository();
+            var bevRequest = repo.LoadByKey(id);
+            if(bevRequest != null)
+            {
+                bevRequest.Status = status;
+                repo.Update(bevRequest);
+            }
+            return Json(bevRequest);
+        }
+
 
         //POST: /CreateRequest
         [HttpPost]

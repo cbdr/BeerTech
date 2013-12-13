@@ -138,6 +138,7 @@
     <Compile Include="API\APIClient.cs" />
     <Compile Include="Authentication\AuthenticationService.cs" />
     <Compile Include="Authentication\SaltedHash.cs" />
+    <Compile Include="Controllers\BeerController.cs" />
     <Compile Include="Controllers\BeverageRequestController.cs" />
     <Compile Include="Controllers\FridgeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\APIBeerInfo.cs" />
     <Compile Include="Models\APISearchResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
