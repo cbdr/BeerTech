@@ -36,7 +36,7 @@ namespace BeerTech.Controllers
             var userCheck = repo.LoadByEmail(user.Email);
             if (userCheck != null)
             {
-                return Json("User already exists");
+                return Json(new { signedin = false, msg = "User already exists" });
             }
             else
             {
@@ -46,15 +46,26 @@ namespace BeerTech.Controllers
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(user.UserID, false);
-                    return Json(user.UserID);
+                    return Json(new { signedin = true, msg = user.UserID });
                 }
                 else
                 {
-                    return Json("unknown error");
+                    return Json(new { signedin = false, msg = "unknown error" });
                 }
-            }
+            }   
+        }
 
-            
+        [HttpGet]
+        public ActionResult CheckLogin()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return Json(new { signedin = true, username = HttpContext.User.Identity}, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { signedin = false, username = "" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]
@@ -68,11 +79,11 @@ namespace BeerTech.Controllers
             if (user != null && new AuthenticationService().PasswordMatch(txtPassword, user))
             {
                 FormsAuthentication.SetAuthCookie(user.UserID, false);
-                return Json(user.UserID);
+                return Json(new { signedin = true });
             }
             else
             {
-                return Json("false");
+                return Json(new { signedin = false });
             }
 
         }
@@ -82,11 +93,11 @@ namespace BeerTech.Controllers
             if (Request.IsAuthenticated)
             {
                 FormsAuthentication.SignOut();
-                return Json("done", JsonRequestBehavior.AllowGet);
+                return Json(new { signedin = false, msg = "done" }, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Json("already logged out", JsonRequestBehavior.AllowGet);
+                return Json(new { signedin = false, msg = "already logged out" }, JsonRequestBehavior.AllowGet);
             }
         }
 
