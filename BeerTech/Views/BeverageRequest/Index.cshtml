@@ -4,6 +4,17 @@
 }
 
 <div class="container" ng-controller="RequestCtrl">
+    <div class="alert alert-info alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <p><strong>Button Actions for Request:</strong>
+        Bought <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-check"></span></button>
+        Not Found <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-question-sign"></span></button>
+        Rejected* <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-ban-circle"></span></button>
+        Deleted** <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-trash"></span></button>
+        </p>
+        <small>*(Please be sure you have good reason for rejection)</small><br />
+        <small>**(Only available to the creator of the request)</small>
+    </div>
     <div class="row" id="searchloader">
         <div ng-hide="loaded" class="col-md-12 beerloader">&nbsp;</div>
         <div ng-show="loaded" class="col-md-6">
@@ -17,8 +28,15 @@
     </div>
     <div class="row" ng-show="loaded" ng-repeat="row in rows">
         <div class="col-md-4" ng-repeat="col in row">
-            <div class="panel" ng-class="panelType(col.Status)">
-                <div class="panel-heading"><b>{{col.BeverageTitle}}</b></div>
+            <div class="panel" ng-class="classType(col.Status,'panel')">
+                <div class="panel-heading"><b>{{col.BeverageTitle}}</b>
+                    <div class="pull-right" ng-show="signedin">
+                        <button type="button" ng-click="updateStatus($parent.$index,$index,col.ID,'Bought')" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-check"></span></button>
+                        <button type="button" ng-click="updateStatus($parent.$index,$index,col.ID,'Not Found')" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-question-sign"></span></button>
+                        <button type="button" ng-click="updateStatus($parent.$index,$index,col.ID,'Rejected')" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-ban-circle"></span></button>
+                        <button ng-show="col.Email==username" ng-click="deleteRequest($parent.$index,$index,col.ID)" type="button" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-trash"></span></button>
+                    </div>
+                </div>
                 <div class="panel-body">
                     <b>Status</b><br /> {{col.Status}}<br />
                     <b>Submitter</b><br /> {{col.Email}}<br />

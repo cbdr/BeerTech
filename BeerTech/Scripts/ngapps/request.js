@@ -42,12 +42,12 @@
         return date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
     }
 
-    $scope.panelType = function (status) {
-        if(status == "Submitted") { return "panel-info"; } 
-        else if(status == "Bought") { return "panel-success"; } 
-        else if(status == "Rejected") { return "panel-danger"; }
-        else if (status == "Not Found") { return "panel-warning"; }
-        return "panel-default";
+    $scope.classType = function (status, classType) {
+        if(status == "Submitted") { return classType + "-info"; } 
+        else if (status == "Bought") { return classType + "-success"; }
+        else if (status == "Rejected") { return classType + "-danger"; }
+        else if (status == "Not Found") { return classType + "-warning"; }
+        return classType + "-default";
     }
 
     $scope.filterSearch = function () {
@@ -61,6 +61,30 @@
         else {
             $scope.rows = chunk($filter('filter')($scope.requests, $scope.fridge.ID), 3);
         }
+    }
+
+    $scope.updateStatus = function (row, col, id, status) {
+        var xsrf = $.param({ id: id, status: status });
+        $http({
+            method: 'POST',
+            url: '/BeverageRequest/UpdateStatus',
+            data: xsrf,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function (data, reqstatus, headers, config) {
+            $scope.rows[row][col].Status = status;
+        });
+    }
+
+    $scope.deleteRequest = function (row, col, id) {
+        var xsrf = $.param({ id: id });
+        $http({
+            method: 'POST',
+            url: '/BeverageRequest/DeleteRequest',
+            data: xsrf,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function (data, status, headers, config) {
+            $scope.getAllRequests();
+        });
     }
 }
 
