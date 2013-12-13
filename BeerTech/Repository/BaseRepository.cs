@@ -45,6 +45,13 @@ namespace BeerTech.Repository
             return Session.Get<T>(key);
         }
 
+        public void Delete(T Item)
+        {
+            Session.BeginTransaction();
+            Session.Delete(Item);
+            Session.Transaction.Commit();
+        }
+
         private ISession CreateSession()
         {
             var factory = CreateSessionFactory(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString());

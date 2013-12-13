@@ -71,5 +71,32 @@ namespace BeerTech.Controllers
 
             return Json(bevRequest);
         }
+
+        //POST: /DeleteRequest
+        [HttpPost]
+        [Authorize]
+        public ActionResult DeleteRequest()
+        {
+            var id = Request.Form.Get("id");
+            var repo = new BeverageRequestRepository();
+            var bevRequest = repo.LoadByKey(id);
+            if (bevRequest != null && bevRequest.Email == HttpContext.User.Identity.Name)
+            {
+                repo.Delete(bevRequest);
+                bevRequest = repo.LoadByKey(id);
+                if (bevRequest == null)
+                {
+                    return Json("success");
+                }
+                else
+                {
+                    return Json("unknown error");
+                }
+            }
+            else
+            {
+                return Json("user not authorized");
+            }        
+        }
     }
 }
