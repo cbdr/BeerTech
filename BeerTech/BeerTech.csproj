@@ -139,6 +139,7 @@
     <Compile Include="Authentication\AuthenticationService.cs" />
     <Compile Include="Authentication\SaltedHash.cs" />
     <Compile Include="Controllers\BeverageRequestController.cs" />
+    <Compile Include="Controllers\FridgeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataObjectMaps\BeverageRequestMap.cs" />

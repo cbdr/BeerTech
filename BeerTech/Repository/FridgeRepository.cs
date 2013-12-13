@@ -11,5 +11,10 @@ namespace BeerTech.Repository {
         public FridgeRepository()
             : base() {
         }
+
+        public IList<Fridge> GetAllFridges()
+        {
+            return Session.QueryOver<Fridge>().List();
+        }
     }
 }

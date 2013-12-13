@@ -6,6 +6,7 @@ using BeerTech.Utility;
 
 namespace BeerTech.DataObjects {
 
+    [Serializable]
     public class Fridge {
 
         public virtual string ID { get; protected set; }
