@@ -4,16 +4,31 @@
 }
 
 <div class="container" ng-app ng-controller="RequestCtrl">
-    <div class="row" ng-hide="loaded">
-        <div class="col-md-12 beerloader">&nbsp;</div>
+    <div class="row" id="searchloader">
+        <div ng-hide="loaded" class="col-md-12 beerloader">&nbsp;</div>
+        <div ng-show="loaded" class="col-md-6">
+            <input ng-model="search" ng-change="filterSearch()" name="search" class="form-control" type="text" placeholder="Search for..." />
+        </div>
+        <div ng-show="loaded" class="col-md-6">
+            <select ng-model="fridge" name="ddFridge" class="form-control">
+               <option value="">Choose a Fridge</option>
+            </select>
+        </div>
     </div>
     <div class="row" ng-show="loaded" ng-repeat="row in rows">
-        <div class="col-md-4 well" ng-repeat="col in row">
-            This
+        <div class="col-md-4" ng-repeat="col in row">
+            <div class="panel" ng-class="panelType(col.Status)">
+                <div class="panel-heading"><b>{{col.BeverageTitle}}</b></div>
+                <div class="panel-body">
+                    <b>Status</b><br /> {{col.Status}}<br />
+                    <b>Submitter</b><br /> {{col.Email}}<br />
+                    <b>Submitted On</b><br /> {{date(col.RequestDate)}}
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/Scripts/ngapps/request.js");
+    @Scripts.Render("~/Scripts/ngapps/request.js")
 }
