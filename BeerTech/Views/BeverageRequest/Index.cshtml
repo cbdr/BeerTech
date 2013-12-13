@@ -10,8 +10,8 @@
             <input ng-model="search" ng-change="filterSearch()" name="search" class="form-control" type="text" placeholder="Search for..." />
         </div>
         <div ng-show="loaded" class="col-md-6">
-            <select ng-model="fridge" name="ddFridge" class="form-control">
-               <option value="">Choose a Fridge</option>
+            <select ng-model="fridge" name="ddFridge" class="form-control" ng-options="f.Name for f in fridges" ng-change="filterFridge()">
+                <option value="">All Fridges</option>
             </select>
         </div>
     </div>
