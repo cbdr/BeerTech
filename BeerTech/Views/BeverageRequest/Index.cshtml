@@ -4,43 +4,102 @@
 }
 
 <div class="container" ng-controller="RequestCtrl">
-    <div class="alert alert-info alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <p><strong>Button Actions for Request:</strong>
-        Bought <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-check"></span></button>
-        Not Found <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-question-sign"></span></button>
-        Rejected* <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-ban-circle"></span></button>
-        Deleted** <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-trash"></span></button>
-        </p>
-        <small>*(Please be sure you have good reason for rejection)</small><br />
-        <small>**(Only available to the creator of the request)</small>
-    </div>
-    <div class="row" id="searchloader">
-        <div ng-hide="loaded" class="col-md-12 beerloader">&nbsp;</div>
-        <div ng-show="loaded" class="col-md-6">
-            <input ng-model="search" ng-change="filterSearch()" name="search" class="form-control" type="text" placeholder="Search for..." />
+    <div ng-show="newrequest" class="well">
+        <button type="button" class="close" ng-click="newrequest=false">&times;</button>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>New Beverage Request</h3>
+                <form role="form">
+                    <div class="form-group">
+                        <select required ng-model="newFridge" class="form-control" ng-options="f.Name for f in fridges">
+                            <option value="">Choose a Fridge</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="newBeverage" placeholder="Beverage Name" required />
+                        <div class="checkbox"><label><input type="checkbox" ng-model="beer" /> Is it Beer?</label></div>
+                    </div>
+                    <button class="btn btn-success" type="submit" ng-click="newRequest()">Submit Request</button>
+                </form>
+            </div>
+            <div class="col-md-7" ng-show="beer">
+                <h3>Brewery DB API: Getting Beer Details</h3>
+                <p>Using this API helps the beerrunners in identifying and hopefully buying your beer. If you see your beer in the list below, click on it, and it will be added to the details of your beverage request!</p>
+                <p><b>Searchterm:</b> {{newBeverage}}</p>
+                <button class="btn btn-success" ng-disabled="newBeverage==''" ng-click="searchBreweryAPI(newBeverage)"><span class="glyphicon glyphicon-search"></span> Search</button>
+            </div>
         </div>
-        <div ng-show="loaded" class="col-md-6">
-            <select ng-model="fridge" name="ddFridge" class="form-control" ng-options="f.Name for f in fridges" ng-change="filterFridge()">
-                <option value="">All Fridges</option>
-            </select>
+        <div class="row" ng-show="totalResults!=null">
+            <div class="col-md-12 text-center"><p>Pages: 
+                <button class="btn btn-link" ng-repeat="n in range" ng-click="preparePage(n)">{{n}}</button>
+            </p></div>
         </div>
-    </div>
-    <div class="row" ng-show="loaded" ng-repeat="row in rows">
-        <div class="col-md-4" ng-repeat="col in row">
-            <div class="panel" ng-class="classType(col.Status,'panel')">
-                <div class="panel-heading"><b>{{col.BeverageTitle}}</b>
-                    <div class="pull-right" ng-show="signedin">
-                        <button type="button" ng-click="updateStatus($parent.$index,$index,col.ID,'Bought')" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-check"></span></button>
-                        <button type="button" ng-click="updateStatus($parent.$index,$index,col.ID,'Not Found')" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-question-sign"></span></button>
-                        <button type="button" ng-click="updateStatus($parent.$index,$index,col.ID,'Rejected')" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-ban-circle"></span></button>
-                        <button ng-show="col.Email==username" ng-click="deleteRequest($parent.$index,$index,col.ID)" type="button" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-trash"></span></button>
+        <div class="row" ng-repeat="row in prows">
+            <div class="col-md-4" ng-repeat="col in row">
+                <div ng-click="selectBeer(col.id, col.name)" class="panel" ng-class="beerClass(col.id)">
+                    <div class="panel-heading"><b>{{col.name}}</b></div>
+                    <div class="panel-body">
+                        <img src="{{col.labels.medium}}" class="img-rounded" /><br />
+                        <b>ABV</b>: {{col.abv}}<br />
+                        <b>Style</b>: {{col.style.category.name}}<br />
+                        <b>Description</b><br /> {{col.description}}<br />
                     </div>
                 </div>
-                <div class="panel-body">
-                    <b>Status</b><br /> {{col.Status}}<br />
-                    <b>Submitter</b><br /> {{col.Email}}<br />
-                    <b>Submitted On</b><br /> {{date(col.RequestDate)}}
+            </div>
+        </div>
+    </div>
+    <div ng-hide="newrequest">
+        <div class="alert alert-info alert-dismissable" ng-show="guide">
+          <button type="button" class="close" ng-click="guide=false">&times;</button>
+          <p><strong>Button Actions for Request:</strong>
+            Bought <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-check"></span></button>
+            Not Found <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-exclamation-sign"></span></button>
+            Rejected* <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-ban-circle"></span></button>
+            Deleted** <button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-trash"></span></button>
+            </p>
+            <p class="text-right">
+                <small>*(Please be sure you have good reason for rejection)</small><br />
+                <small>**(Only available to the creator of the request)</small>
+            </p>
+        </div>
+        <div ng-hide="loaded" class="row">
+            <div class="col-md-12 beerloader">&nbsp;</div>
+        </div>
+        <div ng-show="loaded" class="row" id="searchloader">
+            <div class="col-md-4">
+                <input ng-model="search" ng-change="filterSearch()" name="search" class="form-control" type="text" placeholder="Search for..." />
+            </div>
+            <div class="col-md-4">
+                <select ng-model="fridge" name="ddFridge" class="form-control" ng-options="f.Name for f in fridges" ng-change="filterFridge()">
+                    <option value="">All Fridges</option>
+                </select>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12 btn-group">
+                <button type="button" class="btn btn-md btn-success" ng-click="newrequest=true"><span class="glyphicon glyphicon-plus"></span> New Request</button>
+                <button type="button" class="btn btn-md btn-warning" ng-click="guide=!guide"><span class="glyphicon glyphicon-question-sign"></span> Button Guide</button>
+            </div>
+        </div>
+        <div class="row" ng-show="loaded" ng-repeat="row in rows">
+            <div class="col-md-4" ng-repeat="col in row">
+                <div class="panel" ng-class="classType(col.Status,'panel')">
+                    <div class="panel-heading"><b>{{col.BeverageTitle}}</b>
+                        <div class="pull-right" ng-show="signedin">
+                            <button type="button" ng-click="updateStatus($parent.$index,$index,col.ID,'Bought')" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-check"></span></button>
+                            <button type="button" ng-click="updateStatus($parent.$index,$index,col.ID,'Not Found')" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-exclamation-sign"></span></button>
+                            <button type="button" ng-click="updateStatus($parent.$index,$index,col.ID,'Rejected')" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-ban-circle"></span></button>
+                            <button ng-show="col.Email==username" ng-click="deleteRequest($parent.$index,$index,col.ID)" type="button" class="btn btn-xs" ng-class="classType(col.Status,'btn')"><span class="glyphicon glyphicon-trash"></span></button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <b>Status</b><br /> {{col.Status}}<br />
+                        <b>Submitter</b><br /> {{col.Email}}<br />
+                        <b>Submitted On</b><br /> {{date(col.RequestDate)}}
+                        <p ng-show="col.BeerAPIID != '' && col.BeerAPIID != null" class="text-right"><button class="btn btn-link" ng-click="showDetails = !showDetails">Details <span class="glyphicon glyphicon-chevron-down"></span></button></p>
+                        <div class="text-center" ng-show="showDetails" ng-repeat="detail in details | filter: { id: col.BeerAPIID}">
+                            <img src="{{detail.labels.medium}}" class="img-rounded" /><br />
+                            <b>Style</b>: {{detail.style.category.name}}<br />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

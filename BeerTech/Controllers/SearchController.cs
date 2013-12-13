@@ -31,6 +31,7 @@ namespace BeerTech.Controllers
             {
                 request.AddParameter("p", page);
             }
+            request.AddParameter("type", "beer");
 
             var client = new APIClient<SearchResults>();
 

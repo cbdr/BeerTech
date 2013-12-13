@@ -15,9 +15,9 @@ namespace BeerTech.Controllers
         {
             return View();
         }
+
         //
         // GET: /GetRequest/
-
         public ActionResult GetRequest()
         {
             var id = Request.QueryString["id"];
@@ -25,7 +25,6 @@ namespace BeerTech.Controllers
             var bevRequest = repo.LoadByKey(id);
             return Json(bevRequest, JsonRequestBehavior.AllowGet);
         }
-
         
         //GET: /GetAllRequests
         public ActionResult GetAllRequests()

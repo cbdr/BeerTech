@@ -28,3 +28,11 @@ body {
     padding-bottom:10px;
 }
 
+#searchloader div {
+    padding-bottom:5px;
+}
+
+#searchloader .btn-group button {
+    width:50%;
+}
+

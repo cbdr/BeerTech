@@ -37,6 +37,8 @@ namespace BeerTech.Models
         public string id { get; set; }
         public string name { get; set; }
         public int styleId { get; set; }
+        public string description { get; set; }
+        public Labels labels { get; set; }
         public string isOrganic { get; set; }
         public string status { get; set; }
         public string statusDisplay { get; set; }
