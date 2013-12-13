@@ -19,6 +19,12 @@ namespace BeerTech.Controllers
         {
             var user = new User();
             user.Email = Request.Form.Get("email");
+
+            if (!user.Email.ToLower().EndsWith("@careerbuilder.com"))
+            {
+                return Json("non cb email not allowed");
+            }
+            
             var txtPassword = Request.Form.Get("password");
             var hashAndSalt = new AuthenticationService().CreateCredentials(txtPassword);
 
