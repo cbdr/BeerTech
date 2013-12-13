@@ -45,8 +45,8 @@ namespace BeerTech.Controllers
 
                 if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserID, false);
-                    return Json(new { signedin = true, msg = user.UserID });
+                    FormsAuthentication.SetAuthCookie(user.Email, false);
+                    return Redirect("/BeverageRequest");
                 }
                 else
                 {
@@ -60,7 +60,8 @@ namespace BeerTech.Controllers
         {
             if (Request.IsAuthenticated)
             {
-                return Json(new { signedin = true, username = HttpContext.User.Identity}, JsonRequestBehavior.AllowGet);
+                string email = HttpContext.User.Identity.Name;
+                return Json(new { signedin = true, username = email}, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -78,8 +79,8 @@ namespace BeerTech.Controllers
 
             if (user != null && new AuthenticationService().PasswordMatch(txtPassword, user))
             {
-                FormsAuthentication.SetAuthCookie(user.UserID, false);
-                return Json(new { signedin = true });
+                FormsAuthentication.SetAuthCookie(user.Email, false);
+                return Redirect("/BeverageRequest");
             }
             else
             {
