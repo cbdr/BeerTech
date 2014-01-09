@@ -102,5 +102,17 @@ namespace BeerTech.Controllers
             }
         }
 
+        public ActionResult PasswordRequest()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PasswordRequest()
+        {
+            var email = Request.Form.Get("email");
+
+            return Json(new { success = true, msg = "Request sent." });
+        }
     }
 }

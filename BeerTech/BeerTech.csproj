@@ -189,6 +189,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\ngapps\password.js" />
     <Content Include="Scripts\ngapps\request.js" />
     <Content Include="Scripts\ngapps\user.js" />
     <Content Include="Web.config" />
@@ -203,6 +204,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\BeverageRequest\Index.cshtml" />
+    <Content Include="Views\User\PasswordRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
