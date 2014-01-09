@@ -22,7 +22,7 @@ namespace BeerTech.Controllers
 
             if (!user.Email.ToLower().EndsWith("@careerbuilder.com"))
             {
-                return Json("non cb email not allowed");
+                return Json(new { signedin = false, msg = "You need a CB email address!"});
             }
             
             var txtPassword = Request.Form.Get("password");
@@ -36,7 +36,7 @@ namespace BeerTech.Controllers
             var userCheck = repo.LoadByEmail(user.Email);
             if (userCheck != null)
             {
-                return Json(new { signedin = false, msg = "User already exists" });
+                return Json(new { signedin = false, msg = "User already exists." });
             }
             else
             {
@@ -50,7 +50,7 @@ namespace BeerTech.Controllers
                 }
                 else
                 {
-                    return Json(new { signedin = false, msg = "unknown error" });
+                    return Json(new { signedin = false, msg = "There was a problem logging you in. If this persists... Try again later?" });
                 }
             }   
         }
@@ -84,7 +84,7 @@ namespace BeerTech.Controllers
             }
             else
             {
-                return Json(new { signedin = false });
+                return Json(new { signedin = false, msg = "Login Unsuccesful, check credentials!" });
             }
 
         }

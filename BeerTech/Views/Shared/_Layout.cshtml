@@ -46,6 +46,9 @@
       </div>
     </div>
     <div class="container">
+        <div ng-show="error" class="alert alert-danger">
+        <button type="button" class="close" ng-click="error=false">&times;</button>
+        <b>Error:</b> {{msg}}</div>
       @RenderBody()
       <hr>
       <footer>

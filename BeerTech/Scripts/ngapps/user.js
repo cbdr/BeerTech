@@ -1,6 +1,8 @@
 ﻿function UserCtrl($scope, $http) {
     $scope.signedin = false;
+    $scope.error = false;
     $scope.username = "";
+    $scope.msg = "";
 
     $scope.CheckLogin = function () {
         $http({
@@ -26,6 +28,10 @@
                 if (data.signedin == null) {
                     $scope.signedin = true;
                 }
+                else {
+                    $scope.error = true;
+                    $scope.msg = data.msg;
+                }
             });
         }
     }
@@ -44,6 +50,10 @@
                     $scope.username = $scope.email;
                     $scope.email = "";
                     $scope.password = "";
+                }
+                else {
+                    $scope.error = true;
+                    $scope.msg = data.msg;
                 }
             });
         }
