@@ -161,7 +161,10 @@
     <Compile Include="Repository\BeverageRequestRepository.cs" />
     <Compile Include="Repository\FridgeRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Utility\Encryption.cs" />
     <Compile Include="Utility\IDGenerator.cs" />
+    <Compile Include="Utility\PasswordHelper.cs" />
+    <Compile Include="Utility\ResetPasswordParts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -189,6 +192,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\ngapps\reset.js" />
     <Content Include="Scripts\ngapps\password.js" />
     <Content Include="Scripts\ngapps\request.js" />
     <Content Include="Scripts\ngapps\user.js" />
@@ -205,6 +209,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\BeverageRequest\Index.cshtml" />
     <Content Include="Views\User\PasswordRequest.cshtml" />
+    <Content Include="Views\User\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

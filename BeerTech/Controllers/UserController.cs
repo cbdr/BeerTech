@@ -7,6 +7,9 @@ using System.Web.Security;
 using BeerTech.Authentication;
 using BeerTech.DataObjects;
 using BeerTech.Repository;
+using BeerTech.Utility;
+using System.Configuration;
+using System.Net.Mail;
 
 namespace BeerTech.Controllers
 {
@@ -107,12 +110,65 @@ namespace BeerTech.Controllers
             return View();
         }
 
+        public ActionResult ResetPassword(string digest)
+        {
+            var parts = PasswordHelper.ValidateResetCode(HttpUtility.UrlDecode(digest));
+
+            if (!parts.IsValid)
+            {
+                ViewBag.Message = "Invalid or expired link. Please try again.";
+                ViewBag.ValidRequest = false;
+                return View();
+            }
+
+            ViewBag.Message = "Thank you. You may enter your new password and confirm it below. Try not to forget this time.";
+            ViewBag.Email = parts.User.Email;
+            ViewBag.ValidRequest = true;
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult PasswordRequest()
+        public ActionResult ResetPassword()
+        {
+            var repo = new UserRepository();
+            var email = Request.Form.Get("email");
+            var user = repo.LoadByEmail(email);
+            var txtPassword = Request.Form.Get("password");
+            var hashAndSalt = new AuthenticationService().CreateCredentials(txtPassword);
+
+            user.Password = hashAndSalt.Hash;
+            user.PasswordSalt = hashAndSalt.Salt;
+            if (user != null && txtPassword != null)
+            {
+                repo.Update(user);
+                return Json(new { success = true, msg = "Password successfully reset! Try logging in above." });
+            }
+
+            return Json(new { success = false, msg = "Error, password was not reset." });
+        }
+ 
+
+        [HttpPost]
+        public ActionResult PasswordResetRequest()
         {
             var email = Request.Form.Get("email");
+            var user = new UserRepository().LoadByEmail(email);
 
-            return Json(new { success = true, msg = "Request sent." });
+            if (user != null)
+            {
+                bool sent = PasswordHelper.SendResetEmail(user, HttpContext.Request.Url.ToString());
+                if (!sent)
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        msg = "Error sending password reset request. Please try again later."
+                    });
+                }
+            }
+            //return this regardless so spammers cannot ascertaine real addresses
+            return Json(new { success = true, msg = "Password reset request was sent to " + email.ToString() + 
+                ", be sure to follow the directions in the email before your token expires in " + PasswordHelper.MinutesToExpiration + " minutes!" });
         }
     }
 }
