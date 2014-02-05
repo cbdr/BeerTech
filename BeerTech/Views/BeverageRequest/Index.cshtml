@@ -92,7 +92,7 @@
                     </div>
                     <div class="panel-body">
                         <b>Status</b><br /> {{col.Status}}<br />
-                        <b>Submitter</b><br /> {{col.Email}}<br />
+                        <b>Submitter</b><br /> {{user(col.Email)}}<br />
                         <b>Submitted On</b><br /> {{date(col.RequestDate)}}
                         <p ng-show="col.BeerAPIID != '' && col.BeerAPIID != null" class="text-right"><button class="btn btn-link" ng-click="showDetails = !showDetails">Details <span class="glyphicon glyphicon-chevron-down"></span></button></p>
                         <div class="text-center" ng-show="showDetails" ng-repeat="detail in details | filter: { id: col.BeerAPIID}">

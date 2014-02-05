@@ -67,7 +67,11 @@
 
     $scope.date = function (dt) {
         var date = new Date(parseInt(dt.substr(6)));
-        return date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
+        return (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
+    }
+
+    $scope.user = function (email) {
+        return email.replace('@careerbuilder.com', '');
     }
 
     $scope.classType = function (status, classType) {
